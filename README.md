@@ -29,7 +29,7 @@ The output is just a bit called GOOD.
 
 ## Solution
 
-From our analysis, the output of the circuit is a bit called GOOD. We will assume that the end goal is for GOOD to evaluate to True. After tracing the code by hand for a few steps, we figure out that most of the wires are connected using AND, OR, NAND, and NOR gates. We also figure out that each state has a corresponding set of input bits into BYTE such that the state evaluates to True. Thus, we can write some python code to reverse the circuit and figure out what the input BYTEs must be for each state and the order in which these occur.
+From our analysis, the output of the circuit is a bit called GOOD. We will assume that the end goal is for GOOD to evaluate to True. After tracing the code by hand for a few steps, we figure out that most of the wires are connected using AND, OR, NAND, and NOR gates. We also figure out that each state has a corresponding set of input bits into BYTE such that the state evaluates to True. Thus, we can write some python code to reverse the circuit and figure out what the input bits must be for each state and the order in which these occur. In the end, we convert these bits to characters to form the flag.
 
 ## Code
 
