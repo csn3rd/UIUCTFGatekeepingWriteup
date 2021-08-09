@@ -32,8 +32,11 @@ The output is just a bit called GOOD.
 From our analysis, the output of the circuit is a bit called GOOD. We will assume that the end goal is for GOOD to evaluate to True. After tracing the code by hand for a few steps, we figure out that most of the wires are connected using AND, OR, NAND, and NOR gates. We also figure out that each state has a corresponding set of input bits into BYTE such that the state evaluates to True. Thus, we can write some python code to reverse the circuit and figure out what the input bits must be for each state and the order in which these occur. In the end, we convert these bits to characters to form the flag.
 
 ## Code
+Link: [solve.py](solve.py)
 
-### Part 1 - Go through synth.v and store the important lines
+Breakdown:
+
+**Part 1 - Go through synth.v and store the important lines**
 
 ```python
 f = open('synth.v','r')
@@ -68,7 +71,8 @@ for l in f:
             d[line[0]] = [rh]
 ```
 
-### Part 2 - Figure out the values of each wire and register.
+**Part 2 - Figure out the values of each wire and register.**
+
 ```python
 # ignore clock and reset_n
 # DFS starting with GOOD=True, reverse until 6 states left (uiuctf)
@@ -128,7 +132,7 @@ b[("GOOD", "GOOD")] = 'T'
 dfs("GOOD", "GOOD",0)
 ```
 
-### PART 3 - Getting the flag
+**PART 3 - Getting the flag**
 
 ```python
 # go through each set of bytes and get the character formed
