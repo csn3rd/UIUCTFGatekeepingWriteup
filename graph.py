@@ -46,9 +46,11 @@ for l in f:
             d[line[0]] = [rh]
 
 # part 2 - figure out the values of each wire and register.
-# ignore clock and reset_n
-# DFS starting with GOOD=True, reverse until 6 states left (uiuctf)
+
+# DFS starting with GOOD = True, reverse until 6 states left (uiuctf)
 # statecount keeps track of the number of states visited so far
+# Assume every value is on the positive edge of the clock
+# Reset signal will be T/F depending on what will make the statement evaluate truthfully
 
 # b - solved boolean values, visited - visited nodes and their names
 b={}
