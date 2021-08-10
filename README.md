@@ -29,7 +29,9 @@ The output is just a bit called GOOD.
 
 ## Solution
 
-From our analysis, the output of the circuit is a bit called GOOD. We will assume that the end goal is for GOOD to evaluate to True. After tracing the code by hand for a few steps, we figure out that most of the wires are connected using AND, OR, NAND, and NOR gates. We also figure out that each state has a corresponding set of input bits into BYTE such that the state evaluates to True. Thus, we can write some python code to reverse the circuit and figure out what the input bits must be for each state and the order in which these occur. In the end, we convert these bits to characters to form the flag.
+From our analysis, the output of the circuit is a bit called GOOD. We will assume that the end goal is for GOOD to evaluate to True. After tracing the code by hand for a few steps, we figure out that most of the wires are connected using AND, OR, NAND, and NOR gates. Each state has a corresponding BYTE such that the state evaluates to True. Thus, we can write some python code to figure out the order of the states and their corresponding BYTEs to form the flag.
+
+To implement this, we can first parse the file and build a tree based on the definitions/equations in synth.v. The values of each state, wire, and bit in BYTE can then be determined using algorithms such as DFS or BFS with the output as the root. In this case, the circuit is set up such that there is no ambiguity and only one set of bits can lead to a state being True. We can verify this manually by printing out every assignment and checking that no statements are ambiguous. Thus, we can use DFS to get the order of the states and the corresponding BYTE for the state to be True (If there is ambiguity, we could use BFS to get all possibile flags and manually figure out the right one). In the end, we convert each BYTE to a character to form the flag.
 
 ## Code
 Link: [solve.py](solve.py)
@@ -158,7 +160,7 @@ h.close()
 ## Output/Flag
 Flag: `uiuctf{1ts_pUr3ly_l0gIcal}`
 
-In this case, there were no statements that were ambiguous. We can verify this by checking [log.txt](log.txt). If there were any ambiguous statements, we could manually adjust the values that are incorrect to get the correct flag.
+In this case, there were no statements that were ambiguous. We can verify this by checking [log.txt](log.txt). If there were any ambiguous statements, we could use BFS to get all possible flags and then filter through them by hand.
 
 ## Visualization
 We can take our solve.py code and print to a GraphViz (.gv) file which allows us to view and visualize the values of each state, wire, and BYTE.
