@@ -74,9 +74,10 @@ for l in f:
 **Part 2 - Figure out the values of each wire and register.**
 
 ```python
-# ignore clock and reset_n
-# DFS starting with GOOD=True, reverse until 6 states left (uiuctf)
+# DFS starting with GOOD = True, reverse until 6 states left (uiuctf)
 # statecount keeps track of the number of states visited so far
+# Assume every value is on the positive edge of the clock
+# Reset signal will be T/F depending on what will make the statement evaluate truthfully
 
 # b - solved boolean values, visited - visited nodes and their names
 b={}
@@ -156,6 +157,8 @@ h.close()
 
 ## Output/Flag
 Flag: `uiuctf{1ts_pUr3ly_l0gIcal}`
+
+In this case, there were no statements that were ambiguous. We can verify this by checking [log.txt](log.txt). If there were any ambiguous statements, we could manually adjust the values that are incorrect to get the correct flag.
 
 ## Visualization
 We can take our solve.py code and print to a GraphViz (.gv) file which allows us to view and visualize the values of each state, wire, and BYTE.
